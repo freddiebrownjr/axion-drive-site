@@ -50,7 +50,7 @@ photos: [
   "/porsche-panamera/IMG_3747 2.jpeg",
   "/porsche-panamera/IMG_3752.jpeg",
 ],
-, "/porsche-panamera/door.jpg", "/porsche-panamera/front-seat.jpg", "/porsche-panamera/infotainment.jpg"],
+
     year: "2020",
     make: "Porsche",
     model: "Panamera",
