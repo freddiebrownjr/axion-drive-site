@@ -53,7 +53,6 @@ photos: [
 "/porsche-panamera/IMG_3719.jpeg",
 "/porsche-panamera/IMG_3720.jpeg",
 "/porsche-panamera/IMG_3721.jpeg",
-"/porsche-panamera/IMG_3722.jpeg",
 "/porsche-panamera/IMG_3724.jpeg",
 "/porsche-panamera/IMG_3725.jpeg",
 "/porsche-panamera/IMG_3726.jpeg",
