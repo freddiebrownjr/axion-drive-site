@@ -34,7 +34,23 @@ const COPY = {
 const VEHICLES = [
   {
     slug: "2020-porsche-panamera",
-    photos: ["/porsche-panamera/panamera-1.jpeg", "/porsche-panamera/panamera-2.jpg", "/porsche-panamera/panamera-3.jpeg", "/porsche-panamera/cargo-redacted.jpg", "/porsche-panamera/rear-seats.jpg", "/porsche-panamera/door.jpg", "/porsche-panamera/front-seat.jpg", "/porsche-panamera/infotainment.jpg"],
+    
+photos: [
+  "/porsche-panamera/panamera-1.jpeg",
+  "/porsche-panamera/panamera-2.jpg",
+  "/porsche-panamera/panamera-3.jpeg",
+  "/porsche-panamera/IMG_3737.jpeg",
+  "/porsche-panamera/IMG_3738.jpeg",
+  "/porsche-panamera/IMG_3739.jpeg",
+  "/porsche-panamera/IMG_3740.jpeg",
+  "/porsche-panamera/IMG_3741.jpeg",
+  "/porsche-panamera/IMG_3742.jpeg",
+  "/porsche-panamera/IMG_3743.jpeg",
+  "/porsche-panamera/IMG_3744.jpeg",
+  "/porsche-panamera/IMG_3747 2.jpeg",
+  "/porsche-panamera/IMG_3752.jpeg",
+],
+, "/porsche-panamera/door.jpg", "/porsche-panamera/front-seat.jpg", "/porsche-panamera/infotainment.jpg"],
     year: "2020",
     make: "Porsche",
     model: "Panamera",
