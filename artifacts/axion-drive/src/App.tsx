@@ -36,7 +36,7 @@ const VEHICLES = [
     slug: "2020-porsche-panamera",
     
 photos: [
-  "/porsche-panamera/panamera-1.jpeg",
+"/porsche-panamera/IMG_3718.jpeg",
   "/porsche-panamera/panamera-2.jpg",
   "/porsche-panamera/panamera-3.jpeg",
   "/porsche-panamera/IMG_3737.jpeg",
@@ -49,7 +49,7 @@ photos: [
   "/porsche-panamera/IMG_3744.jpeg",
   "/porsche-panamera/IMG_3747 2.jpeg",
   "/porsche-panamera/IMG_3752.jpeg","/porsche-panamera/IMG_3717.jpeg",
-"/porsche-panamera/IMG_3718.jpeg",
+
 "/porsche-panamera/IMG_3719.jpeg",
 "/porsche-panamera/IMG_3720.jpeg",
 "/porsche-panamera/IMG_3721.jpeg",
@@ -67,8 +67,7 @@ photos: [
     payment: "Owner-retained consignment • By appointment",
     detail: "VIN: WP0AA2A76LL103211 • Mileage and options pending verification",
     tag: "Consignment",
-    image: "/porsche-panamera/panamera-1.jpeg",
-  },
+image: "/porsche-panamera/IMG_3718.jpeg",  },
   {
     slug: "2021-mercedes-benz-e350",
     year: "2021",
