@@ -33,16 +33,19 @@ const COPY = {
 
 const VEHICLES = [
   {
+    slug: "2020-porsche-panamera",
+    photos: ["/porsche-panamera/panamera-1.jpeg", "/porsche-panamera/panamera-2.jpg", "/porsche-panamera/panamera-3.jpeg", "/porsche-panamera/cargo-redacted.jpg", "/porsche-panamera/rear-seats.jpg", "/porsche-panamera/door.jpg", "/porsche-panamera/front-seat.jpg", "/porsche-panamera/infotainment.jpg"],
     year: "2020",
     make: "Porsche",
     model: "Panamera",
     price: "$42,000",
-    payment: "Owner-retained consignment • By appointment • Stock photo shown",
-    detail: "VIN: WP0AA2A76LL103211 • Mileage and options pending verification • Actual photos available on request",
+    payment: "Owner-retained consignment • By appointment",
+    detail: "VIN: WP0AA2A76LL103211 • Mileage and options pending verification",
     tag: "Consignment",
-    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Porsche_Panamera_4S_%28Type_971%29_front.jpg?width=1280",
+    image: "/porsche-panamera/panamera-1.jpeg",
   },
   {
+    slug: "2021-mercedes-benz-e350",
     year: "2021",
     make: "Mercedes-Benz",
     model: "E 350 Sedan",
@@ -54,6 +57,7 @@ const VEHICLES = [
       "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1400&q=80",
   },
   {
+    slug: "2022-tesla-model-y",
     year: "2022",
     make: "Tesla",
     model: "Model Y Long Range",
@@ -65,6 +69,7 @@ const VEHICLES = [
       "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=1400&q=80",
   },
   {
+    slug: "2020-bmw-x5",
     year: "2020",
     make: "BMW",
     model: "X5 xDrive40i",
@@ -141,6 +146,27 @@ function runSelfTests() {
   });
 
   return results;
+}
+
+
+function VehicleDetailPage({ slug }: { slug: string }) {
+  const vehicle = VEHICLES.find(v => v.slug === slug);
+  const [active, setActive] = useState(0);
+  if (!vehicle) return <div style={{padding:60, color:"white"}}><a href="/#inventory">← Back to Inventory</a><h1>Vehicle not found</h1></div>;
+  const photos = "photos" in vehicle && Array.isArray(vehicle.photos) ? vehicle.photos : [vehicle.image];
+  const title = `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
+  const email = `mailto:${CONTACT.email}?subject=${encodeURIComponent(`Inquiry: ${title}`)}&body=${encodeURIComponent(`Hello, I am interested in the ${title}. Please contact me to arrange a viewing.\n\nName:\nPhone:\nPreferred date/time:`)}`;
+  return <div className="detailPage">
+    <div className="detailTop"><a href="/" className="detailBrand">AXION <span>DRIVE GROUP</span></a><a href="/#inventory">← Back to Inventory</a><a href="/">Home</a></div>
+    <main className="detailContainer">
+      <div className="detailCrumb"><a href="/">Home</a> / <a href="/#inventory">Inventory</a> / {title}</div>
+      <div className="detailLayout"><div>
+        <div className="detailMainPhoto"><img src={photos[active]} alt={`${title} photo ${active+1}`} /></div>
+        <div className="detailThumbs">{photos.map((p,i)=><button key={p} type="button" className={active===i?"selected":""} onClick={()=>setActive(i)} aria-label={`Show photo ${i+1}`}><img src={p} alt={`${title} thumbnail ${i+1}`}/></button>)}</div>
+      </div><div className="detailInfo"><div className="detailEyebrow">AXION DRIVE GROUP • VEHICLE DETAILS</div><h1>{title}</h1><p className="detailTag">{vehicle.tag}</p><div className="detailPrice">{vehicle.price}</div><p>{vehicle.payment}</p><a className="detailAction" href={email}>Request Information / Schedule Viewing</a><a className="detailSecondary" href={`tel:${CONTACT.phone.replace(/[^0-9]/g,"")}`}>Call {CONTACT.phone}</a><h2>Vehicle Overview</h2><p>{vehicle.detail}</p><p>Vehicle details, equipment, mileage and availability should be confirmed with Axion Drive Group before purchase.</p><h2>Contact</h2><p>{CONTACT.location}<br/>{CONTACT.email}</p><a href="/#inventory" className="detailBack">← Back to All Vehicles</a></div></div>
+    </main>
+    <style>{`body{margin:0;background:#111;color:#f8f8f8}.detailPage{min-height:100vh;background:#111;color:#eee;font-family:Arial,sans-serif}.detailPage a{color:inherit}.detailTop{height:76px;border-bottom:1px solid #333;display:flex;align-items:center;gap:30px;padding:0 max(22px,calc((100vw - 1200px)/2));}.detailBrand{font-size:22px;font-weight:900;text-decoration:none;letter-spacing:3px;margin-right:auto}.detailBrand span{display:block;font-size:9px;letter-spacing:4px;color:#b99754}.detailContainer{max-width:1200px;margin:auto;padding:28px 20px 90px}.detailCrumb{color:#aaa;font-size:13px;margin-bottom:28px}.detailLayout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(310px,1fr);gap:36px}.detailMainPhoto{background:#202020;aspect-ratio:4/3;overflow:hidden;border-radius:10px}.detailMainPhoto img{width:100%;height:100%;object-fit:contain}.detailThumbs{display:flex;gap:10px;overflow-x:auto;padding:12px 0}.detailThumbs button{padding:0;background:#222;border:2px solid transparent;min-width:96px;width:96px;height:72px;cursor:pointer;border-radius:5px;overflow:hidden}.detailThumbs button.selected{border-color:#c49b4b}.detailThumbs img{width:100%;height:100%;object-fit:cover}.detailInfo h1{font-size:clamp(28px,3vw,42px);line-height:1.1;margin:12px 0}.detailEyebrow{color:#c9a45a;font-size:12px;letter-spacing:2px}.detailTag{color:#ccc}.detailPrice{font-size:36px;font-weight:800;color:#c9a45a;margin:25px 0}.detailInfo p{color:#bbb;line-height:1.6}.detailAction,.detailSecondary{display:block;text-align:center;text-decoration:none;padding:17px 12px;margin:10px 0;border-radius:5px;font-weight:bold}.detailAction{background:#c09a4d;color:#111!important}.detailSecondary{border:1px solid #aaa}.detailInfo h2{margin-top:34px;font-size:20px}.detailBack{display:inline-block;margin-top:25px;color:#c9a45a!important}@media(max-width:800px){.detailLayout{grid-template-columns:1fr}.detailTop{padding:0 16px;gap:14px}.detailTop a{font-size:12px}.detailBrand{font-size:16px}.detailContainer{padding:20px 14px 65px}}`}</style>
+  </div>;
 }
 
 function AxionLogo() {
@@ -295,6 +321,8 @@ function Inventory() {
         <div className="vehicleGrid">
           {filteredVehicles.map((vehicle) => (
             <article
+              onClick={() => window.location.assign(`/inventory/${vehicle.slug}`)}
+              style={{ cursor: "pointer" }}
               className="vehicleCard"
               key={`${vehicle.year}-${vehicle.make}-${vehicle.model}`}
             >
@@ -318,9 +346,7 @@ function Inventory() {
                     <div className="price">{vehicle.price}</div>
                     <div className="payment">{vehicle.payment}</div>
                   </div>
-                  <a href={vehicle.make === "Porsche" ? `mailto:axiondrivegroup@gmail.com?subject=${encodeURIComponent("2020 Porsche Panamera viewing request - WP0AA2A76LL103211")}&body=${encodeURIComponent("I would like to request a viewing of the 2020 Porsche Panamera. My name and preferred contact information are: ")}` : "#contact"} className="smallLink">
-                    {vehicle.make === "Porsche" ? "Request Viewing" : "View"}
-                  </a>
+                  <a href={`/inventory/${vehicle.slug}`} className="smallLink" onClick={(e) => e.stopPropagation()}>View Details</a>
                 </div>
 
                 <div className="vehicleDetail">{vehicle.detail}</div>
@@ -533,6 +559,8 @@ function Footer() {
 }
 
 export default function AxionDriveGroupWebsite() {
+  const slug = decodeURIComponent(window.location.pathname).match(/^\/inventory\/([^/]+)\/?$/)?.[1];
+  if (slug) return <VehicleDetailPage slug={slug} />;
   return (
     <div className="siteRoot">
       <style>{`
